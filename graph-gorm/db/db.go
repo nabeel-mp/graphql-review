@@ -1,9 +1,9 @@
 package db
 
 import (
+	"graph-gorm/graph/model"
 	"log"
 
-	"github.com/99designs/gqlgen/codegen/testserver/benchmark/generated/models"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -18,7 +18,7 @@ func Connect() {
 	if err != nil {
 		log.Fatal("failed to connect db")
 	}
-	db.AutoMigrate(&models.User{})
+	db.AutoMigrate(&model.User{})
 
 	DB = db
 

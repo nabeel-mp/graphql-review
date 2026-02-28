@@ -3,7 +3,7 @@ package graph
 import (
 	"context"
 	"graph-gorm/db"
-	"graph-gorm/model"
+	"graph-gorm/graph/model"
 	"strconv"
 )
 
@@ -50,6 +50,10 @@ func (r *queryResolver) GetUser(c context.Context) ([]*model.User, error) {
 
 	// return result, nil
 }
+
+func (r *Resolver) Mutation() generated.MutationResolver { return &mutationResolver{r} }
+
+func (r *Resolver) Query() generated.QueryResolver { return &queryResolver{r} }
 
 type mutationResolver struct{ *Resolver }
 type queryResolver struct{ *Resolver }

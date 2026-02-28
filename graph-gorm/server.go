@@ -3,11 +3,11 @@ package main
 import (
 	"graph-gorm/db"
 	"graph-gorm/graph"
-	"graph-gorm/graph/generated"
 	"log"
 	"net/http"
 	"os"
 
+	"github.com/99designs/gqlgen/codegen/testserver/benchmark/generated"
 	"github.com/99designs/gqlgen/graphql/handler"
 	"github.com/99designs/gqlgen/graphql/playground"
 )
