@@ -14,7 +14,7 @@ type Query struct {
 }
 
 type User struct {
-	ID    string `json:"id"`
+	ID    uint   `gorm:"primaryKey;autoIncrement" json:"id"`
 	Name  string `json:"name"`
 	Email string `json:"email"`
 }

@@ -32,7 +32,7 @@ func (r *mutationResolver) DeleteUser(c context.Context, id string) (bool, error
 	return true, nil
 }
 
-func (r *queryResolver) GetUser(c context.Context) ([]*model.User, error) {
+func (r *queryResolver) Users(c context.Context) ([]*model.User, error) {
 	// var users []models.User
 	// db.DB.Find(*&users)
 
@@ -51,9 +51,9 @@ func (r *queryResolver) GetUser(c context.Context) ([]*model.User, error) {
 	// return result, nil
 }
 
-func (r *Resolver) Mutation() generated.MutationResolver { return &mutationResolver{r} }
+func (r *Resolver) Mutation() MutationResolver { return &mutationResolver{r} }
 
-func (r *Resolver) Query() generated.QueryResolver { return &queryResolver{r} }
+func (r *Resolver) Query() QueryResolver { return &queryResolver{r} }
 
 type mutationResolver struct{ *Resolver }
 type queryResolver struct{ *Resolver }
