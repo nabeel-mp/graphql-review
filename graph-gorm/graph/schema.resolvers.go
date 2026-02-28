@@ -4,7 +4,6 @@ import (
 	"context"
 	"graph-gorm/db"
 	"graph-gorm/graph/model"
-	"strconv"
 )
 
 func (r *mutationResolver) CreateUser(ctx context.Context, input model.NewUser) (*model.User, error) {
@@ -21,10 +20,10 @@ func (r *mutationResolver) CreateUser(ctx context.Context, input model.NewUser) 
 	return &user, nil
 }
 
-func (r *mutationResolver) DeleteUser(c context.Context, id string) (bool, error) {
-	userid, _ := strconv.Atoi(id)
+func (r *mutationResolver) DeleteUser(ctx context.Context, id uint) (bool, error) {
+	// userid, _ := strconv.ParseUint(id, 10, 32)
 
-	result := db.DB.Delete(&model.User{}, userid)
+	result := db.DB.Delete(&model.User{}, id)
 	if result.Error != nil {
 		return false, result.Error
 	}
@@ -32,7 +31,7 @@ func (r *mutationResolver) DeleteUser(c context.Context, id string) (bool, error
 	return true, nil
 }
 
-func (r *queryResolver) Users(c context.Context) ([]*model.User, error) {
+func (r *queryResolver) Users(ctx context.Context) ([]*model.User, error) {
 	// var users []models.User
 	// db.DB.Find(*&users)
 
